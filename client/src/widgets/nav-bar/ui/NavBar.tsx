@@ -14,7 +14,7 @@ export const NavBar: FC<NavBarProps> = ({ children }) => {
         sx={{ gap: '8px', display: 'flex', justifyContent: 'space-between' }}
       >
         <StyledTypography fontWeight={800}>
-          <Link to={'http://localhost:5173/'}>HackerNews</Link>
+          <Link to={'http://localhost:3000/'}>HackerNews</Link>
         </StyledTypography>
         {children}
       </Toolbar>
