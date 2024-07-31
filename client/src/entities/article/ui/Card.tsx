@@ -28,8 +28,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
           <UserTypography>by {user}</UserTypography>
           <InfoTypography>{time_ago}</InfoTypography>
           <InfoTypography>
-            {' '}
-            {points} {points == 1 ? 'point' : 'points'}{' '}
+            {points} {points === 1 ? 'point' : 'points'}
           </InfoTypography>
         </Stack>
       </StyledCardContent>

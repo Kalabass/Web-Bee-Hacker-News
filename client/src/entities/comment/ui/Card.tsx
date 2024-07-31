@@ -1,6 +1,6 @@
 import { useCommentStore } from '@/shared/store/useCommentsStore';
 import { InfoTypography, UserTypography } from '@/shared/ui/Typography';
-import { Box, Button, Card, Typography, styled } from '@mui/material';
+import { Box, Button, Card, Stack, Typography, styled } from '@mui/material';
 import { FC } from 'react';
 
 import { CommentProps } from '../model/interfaces';
@@ -28,12 +28,10 @@ export const CommentCard: FC<CommentProps> = ({
         width: `${level === 0 ? '100%' : '98%'}`,
       }}
     >
-      <Box>
-        <UserTypography custom_color='text.primary' as='span'>
-          {user}{' '}
-        </UserTypography>
-        <InfoTypography as='span'>{time_ago}</InfoTypography>
-      </Box>
+      <Stack direction='row' spacing={1} alignItems='center'>
+        <UserTypography custom_color='text.primary'>{user}</UserTypography>
+        <InfoTypography>{time_ago}</InfoTypography>
+      </Stack>
 
       <Box>
         <StyledTypography dangerouslySetInnerHTML={{ __html: content }} />

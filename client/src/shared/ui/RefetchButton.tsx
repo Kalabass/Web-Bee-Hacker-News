@@ -5,7 +5,7 @@ import { RefetchButtonProps } from '../model/ui/interfaces';
 
 export const RefetchButton: FC<RefetchButtonProps> = ({ entity, query }) => {
   const { refetch, isSuccess, isError, isFetching } = query;
-  const onCLickHandler = () => {
+  const onClickHandler = () => {
     refetch();
     if (isSuccess) toast.success(`${entity} refreshed`);
     if (isError) toast.error('Something went wrong');
@@ -14,7 +14,7 @@ export const RefetchButton: FC<RefetchButtonProps> = ({ entity, query }) => {
   return (
     <StyledButton
       disabled={isFetching}
-      onClick={onCLickHandler}
+      onClick={onClickHandler}
       variant='text'
       color='inherit'
     >

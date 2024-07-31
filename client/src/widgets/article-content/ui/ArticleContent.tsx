@@ -44,8 +44,7 @@ export const ArticleContent: FC<ArticleContentProps> = ({ id }) => {
             {new Date(data.time * 1000).toLocaleString()}
           </InfoTypography>
           <InfoTypography custom_color='primary'>
-            {data.comments_count}{' '}
-            {data.comments_count === 1 ? 'comment:' : 'comments:'}
+            {`${data.comments_count} ${data.comments_count === 1 ? 'comment:' : 'comments:'}`}
           </InfoTypography>
         </>
       )}

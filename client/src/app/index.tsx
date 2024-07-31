@@ -18,7 +18,6 @@ export const App = withMuiTheme(
             autoClose={1000}
             stacked={true}
           />
-          ;
         </>
       );
     }),
