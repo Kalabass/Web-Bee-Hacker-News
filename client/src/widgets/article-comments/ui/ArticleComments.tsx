@@ -1,14 +1,13 @@
-import { useComments } from '@/entities/comment';
 import { CommentTree } from '@/features/comment-tree';
 import { Box } from '@mui/material';
 import { FC } from 'react';
 
-interface ArticleCommentsProps {
-  id: number;
-}
+import { ArticleCommentsProps } from '../model/interfaces';
 
-export const ArticleComments: FC<ArticleCommentsProps> = ({ id }) => {
-  const { data, isError } = useComments(id);
+export const ArticleComments: FC<ArticleCommentsProps> = ({
+  isError,
+  data,
+}) => {
   return (
     <>
       {isError && <Box>Error</Box>}

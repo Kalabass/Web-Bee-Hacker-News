@@ -1,11 +1,11 @@
-import { useCommentStore } from "@/shared/store/useCommentsStore";
-import { InfoTypography, UserTypography } from "@/shared/ui/Typography";
-import { Box, Button, Card, Typography, styled } from "@mui/material";
-import { FC } from "react";
+import { useCommentStore } from '@/shared/store/useCommentsStore';
+import { InfoTypography, UserTypography } from '@/shared/ui/Typography';
+import { Box, Button, Card, Typography, styled } from '@mui/material';
+import { FC } from 'react';
 
-import { CommentProps } from "../model/interfaces";
+import { CommentProps } from '../model/interfaces';
 
-export const CommentCard: FC = ({
+export const CommentCard: FC<CommentProps> = ({
   user,
   content,
   comments_count,
@@ -25,22 +25,22 @@ export const CommentCard: FC = ({
     <Card
       elevation={0}
       sx={{
-        width: `${level === 0 ? "100%" : "98%"}`,
+        width: `${level === 0 ? '100%' : '98%'}`,
       }}
     >
       <Box>
-        <UserTypography custom_color="text.primary" as="span">
-          {user}{" "}
+        <UserTypography custom_color='text.primary' as='span'>
+          {user}{' '}
         </UserTypography>
-        <InfoTypography as="span">{time_ago}</InfoTypography>
+        <InfoTypography as='span'>{time_ago}</InfoTypography>
       </Box>
 
       <Box>
         <StyledTypography dangerouslySetInnerHTML={{ __html: content }} />
 
         {comments_count > 0 && (
-          <StyledButton variant="outlined" onClick={handleToggleVisibility}>
-            {isVisible ? "-" : "+"}
+          <StyledButton variant='outlined' onClick={handleToggleVisibility}>
+            {isVisible ? '-' : '+'}
           </StyledButton>
         )}
         {isVisible && commentTree}
@@ -55,10 +55,10 @@ const StyledTypography = styled(Typography)`
   margin-left: 9px;
   font-size: 1rem;
 
-  ${({ theme }) => theme.breakpoints.up("xl")} {
+  ${({ theme }) => theme.breakpoints.up('xl')} {
     font-size: 2rem;
   }
-  ${({ theme }) => theme.breakpoints.down("sm")} {
+  ${({ theme }) => theme.breakpoints.down('sm')} {
     font-size: 0.8rem;
   }
 `;

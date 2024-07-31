@@ -1,10 +1,8 @@
-import { AppBar, styled, Toolbar, Typography } from '@mui/material';
-import { FC, ReactNode } from 'react';
+import { AppBar, Toolbar, Typography, styled } from '@mui/material';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-interface NavBarProps {
-  children?: ReactNode;
-}
+import { NavBarProps } from '../model/interfaces';
 
 export const NavBar: FC<NavBarProps> = ({ children }) => {
   return (
@@ -14,7 +12,7 @@ export const NavBar: FC<NavBarProps> = ({ children }) => {
         sx={{ gap: '8px', display: 'flex', justifyContent: 'space-between' }}
       >
         <StyledTypography fontWeight={800}>
-          <Link to={'http://localhost:3000/'}>HackerNews</Link>
+          <Link to={'/'}>HackerNews</Link>
         </StyledTypography>
         {children}
       </Toolbar>

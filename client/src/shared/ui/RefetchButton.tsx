@@ -1,15 +1,29 @@
-import { Button, styled, Typography } from '@mui/material';
+import { Button, Typography, styled } from '@mui/material';
+import { UseQueryResult } from '@tanstack/react-query';
 import { FC } from 'react';
+import { toast } from 'react-toastify';
 
 interface RefetchButtonProps {
-  onClick: () => void;
-  text: string;
+  entity: string;
+  query: UseQueryResult;
 }
 
-export const RefetchButton: FC<RefetchButtonProps> = ({ onClick, text }) => {
+export const RefetchButton: FC<RefetchButtonProps> = ({ entity, query }) => {
+  const { refetch, isSuccess, isError, isFetching } = query;
+  const onCLickHandler = () => {
+    refetch();
+    if (isSuccess) toast.success(`${entity} refreshed`);
+    if (isError) toast.error('Something went wrong');
+  };
+
   return (
-    <StyledButton onClick={onClick} variant='text' color='inherit'>
-      <StyledTypography>{text}</StyledTypography>
+    <StyledButton
+      disabled={isFetching}
+      onClick={onCLickHandler}
+      variant='text'
+      color='inherit'
+    >
+      <StyledTypography>refresh {entity}</StyledTypography>
     </StyledButton>
   );
 };

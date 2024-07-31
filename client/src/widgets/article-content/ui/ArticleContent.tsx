@@ -4,14 +4,12 @@ import {
   TitleTypography,
   UserTypography,
 } from '@/shared/ui/Typography';
-
-import { Box, Divider, Skeleton, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-interface ArticleContentProps {
-  id: number;
-}
+import { ArticleContentProps } from '../model/interfaces';
+import ArticleContentSkeleton from './Skeleton';
 
 export const ArticleContent: FC<ArticleContentProps> = ({ id }) => {
   const { data, isError, isLoading } = useSingleArticle(id);
@@ -29,15 +27,7 @@ export const ArticleContent: FC<ArticleContentProps> = ({ id }) => {
           </Typography>
         </Box>
       )}
-      {isLoading && (
-        <>
-          <Skeleton height='40px' width='100%' />
-          <Divider sx={{ mb: 2 }} />
-          <Skeleton animation='wave' component='h6' width='15%' height='25px' />
-          <Skeleton animation='wave' component='h5' width='15%' height='25px' />
-          <Skeleton animation='wave' component='h6' width='15%' height='25px' />
-        </>
-      )}
+      {isLoading && <ArticleContentSkeleton />}
       {data && (
         <>
           <TitleTypography as='h2'>{data.title}</TitleTypography>
