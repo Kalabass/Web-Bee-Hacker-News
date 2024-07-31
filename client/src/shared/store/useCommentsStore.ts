@@ -1,11 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-
-interface CommentState {
-  visibleComments: Set<number>;
-  toggleCommentVisibility: (commentId: number) => void;
-  isCommentVisible: (commentId: number) => boolean;
-}
+import { CommentState } from '../model/stores/interfaces';
 
 export const useCommentStore = create<CommentState>()(
   devtools(

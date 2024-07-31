@@ -1,12 +1,7 @@
 import { Button, Typography, styled } from '@mui/material';
-import { UseQueryResult } from '@tanstack/react-query';
 import { FC } from 'react';
 import { toast } from 'react-toastify';
-
-interface RefetchButtonProps {
-  entity: string;
-  query: UseQueryResult;
-}
+import { RefetchButtonProps } from '../model/ui/interfaces';
 
 export const RefetchButton: FC<RefetchButtonProps> = ({ entity, query }) => {
   const { refetch, isSuccess, isError, isFetching } = query;

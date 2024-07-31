@@ -1,1 +1,1 @@
-export { ArticleContent } from "./ui/ArticleContent.tsx";
+export { ArticleContent } from './ui/ArticleContent.tsx';
