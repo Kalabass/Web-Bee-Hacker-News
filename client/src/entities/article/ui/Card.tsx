@@ -24,7 +24,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
     >
       <StyledCardContent>
         <TitleTypography as='h2'>{title}</TitleTypography>
-        <Stack direction='row' spacing={1}>
+        <Stack direction='row' spacing={1} alignItems='center'>
           <UserTypography>by {user}</UserTypography>
           <InfoTypography>{time_ago}</InfoTypography>
           <InfoTypography>
