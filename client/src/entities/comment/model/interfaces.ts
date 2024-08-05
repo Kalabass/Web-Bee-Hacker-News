@@ -1,4 +1,4 @@
-import { Item } from '@/shared/model/article-interfaces/interfaces';
+import { Item } from '@/shared/model/articleInterfaces/interfaces';
 import { ReactNode } from 'react';
 
 export interface CommentProps

@@ -2,8 +2,8 @@ import {
   FeedItem,
   IndividualArticleData,
   Item,
-} from '../model/article-interfaces/interfaces';
-import instance from './axios-instance';
+} from '../model/articleInterfaces/interfaces';
+import instance from './axiosInstance';
 
 class ArticleService {
   async getAll() {

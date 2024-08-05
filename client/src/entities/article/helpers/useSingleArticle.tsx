@@ -1,4 +1,4 @@
-import { articleService } from '@/shared/api/article-service';
+import { articleService } from '@/shared/api/articleService';
 import { useQuery } from '@tanstack/react-query';
 
 export const useSingleArticle = (id: number) => {

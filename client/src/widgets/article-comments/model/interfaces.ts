@@ -1,4 +1,4 @@
-import { Item } from '@/shared/model/article-interfaces/interfaces';
+import { Item } from '@/shared/model/articleInterfaces/interfaces';
 
 export interface ArticleCommentsProps {
   data: Item[] | undefined;

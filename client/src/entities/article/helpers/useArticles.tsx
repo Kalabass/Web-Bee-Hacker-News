@@ -1,11 +1,12 @@
-import { articleService } from '@/shared/api/article-service';
+import { articleService } from '@/shared/api/articleService';
+import { REFETCH_INTERVAL_MS } from '@/shared/constants';
 import { useQuery } from '@tanstack/react-query';
 
 export const useArticles = () => {
   return useQuery({
     queryFn: () => articleService.getAll(),
     queryKey: ['articles'],
-    refetchInterval: 60000,
+    refetchInterval: REFETCH_INTERVAL_MS,
     select: ({ data }) => data,
   });
 };

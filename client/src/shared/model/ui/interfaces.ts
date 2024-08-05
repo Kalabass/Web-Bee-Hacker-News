@@ -4,3 +4,7 @@ export interface RefetchButtonProps {
   entity: string;
   query: UseQueryResult;
 }
+
+export interface NotFoundBoxProps {
+  text: string;
+}

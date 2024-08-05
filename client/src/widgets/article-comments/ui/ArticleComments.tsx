@@ -1,7 +1,7 @@
-import { CommentTree } from '@/features/comment-tree';
 import { Box } from '@mui/material';
 import { FC } from 'react';
 
+import { CommentTree } from '@/features/commentTree';
 import { ArticleCommentsProps } from '../model/interfaces';
 
 export const ArticleComments: FC<ArticleCommentsProps> = ({

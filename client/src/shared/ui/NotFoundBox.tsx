@@ -1,12 +1,9 @@
 import { Box, Button, Typography } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { NotFoundBoxProps } from '../model/ui/interfaces';
 
-export interface NotFoundBox {
-  text: string;
-}
-
-export const NotFoundBox: FC<NotFoundBox> = ({ text }) => {
+export const NotFoundBox: FC<NotFoundBoxProps> = ({ text }) => {
   const capitalizedText = text.charAt(0).toUpperCase() + text.slice(1);
   return (
     <Box

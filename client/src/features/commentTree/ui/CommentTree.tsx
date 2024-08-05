@@ -21,7 +21,6 @@ export const CommentTree: FC<CommentTreeProps> = ({ comments }) => {
 
 const StyledList = styled(List)`
   padding: 0;
-
   display: flex;
   justify-content: flex-end;
 `;

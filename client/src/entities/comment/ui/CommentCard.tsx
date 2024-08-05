@@ -29,7 +29,7 @@ export const CommentCard: FC<CommentProps> = ({
       }}
     >
       <Stack direction='row' spacing={1} alignItems='center'>
-        <UserTypography custom_color='text.primary'>{user}</UserTypography>
+        <UserTypography customColor='text.primary'>{user}</UserTypography>
         <InfoTypography>{time_ago}</InfoTypography>
       </Stack>
 

@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { ArticlePage } from './article-page';
+import { ArticlePage } from './article';
 import { MainPage } from './main';
-import { NotFoundPage } from './not-found';
+import { NotFoundPage } from './notFound';
 
 export const Routing = () => {
   return (
