@@ -23,7 +23,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
       sx={{ width: '100%', marginBottom: 2 }}
     >
       <StyledCardContent>
-        <TitleTypography as='h2'>{title}</TitleTypography>
+        <TitleTypography>{title}</TitleTypography>
         <Stack direction='row' spacing={1} alignItems='center'>
           <UserTypography>by {user}</UserTypography>
           <InfoTypography>{time_ago}</InfoTypography>
