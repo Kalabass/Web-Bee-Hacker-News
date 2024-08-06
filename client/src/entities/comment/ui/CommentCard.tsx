@@ -21,12 +21,7 @@ export const CommentCard: FC<CommentCardProps> = ({
   };
 
   return (
-    <Card
-      elevation={0}
-      sx={{
-        width: `${level === 0 ? '100%' : '98%'}`,
-      }}
-    >
+    <StyledCard elevation={0} level={level}>
       <Stack direction='row' spacing={1} alignItems='center'>
         <UserTypography CustomColor='text.primary'>{user}</UserTypography>
         <InfoTypography>{time_ago}</InfoTypography>
@@ -42,9 +37,15 @@ export const CommentCard: FC<CommentCardProps> = ({
         )}
         {isVisible && commentTree}
       </Box>
-    </Card>
+    </StyledCard>
   );
 };
+
+const StyledCard = styled(Card, {
+  shouldForwardProp: (prop) => prop !== 'level',
+})<{ level: number }>(({ level }) => ({
+  width: level === 0 ? '100%' : '98%',
+}));
 
 const StyledTypography = styled(Typography)`
   padding: 8px 0 8px 16px;

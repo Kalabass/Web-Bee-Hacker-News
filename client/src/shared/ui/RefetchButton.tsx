@@ -16,7 +16,6 @@ export const RefetchButton: FC<RefetchButtonProps> = ({ entity, query }) => {
       disabled={isFetching || isError}
       onClick={onClickHandler}
       variant='text'
-      color='inherit'
     >
       <StyledTypography>refresh {entity}</StyledTypography>
     </StyledButton>
