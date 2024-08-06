@@ -1,13 +1,13 @@
 import {
-  FeedItem,
+  ArticleData,
+  CommentData,
   IndividualArticleData,
-  Item,
 } from '../model/articleInterfaces/interfaces';
 import instance from './axiosInstance';
 
 class ArticleService {
   async getAll() {
-    return await instance.get<FeedItem[]>('articles');
+    return await instance.get<ArticleData[]>('articles');
   }
 
   async getOne(id: number) {
@@ -15,7 +15,7 @@ class ArticleService {
   }
 
   async getComments(id: number) {
-    return await instance.get<Item[]>(`articles/comments/${id}`);
+    return await instance.get<CommentData[]>(`articles/comments/${id}`);
   }
 }
 

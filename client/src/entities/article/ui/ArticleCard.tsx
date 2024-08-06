@@ -1,3 +1,4 @@
+import { AppRoutes } from '@/shared/const/AppRoutes';
 import {
   InfoTypography,
   TitleTypography,
@@ -19,7 +20,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
     <Card
       variant='outlined'
       component={Link}
-      to={`article/${id}`}
+      to={`${AppRoutes.ARTICLE.replace(':id', `${id}`)}`}
       sx={{ width: '100%', marginBottom: 2 }}
     >
       <StyledCardContent>

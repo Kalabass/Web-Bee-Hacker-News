@@ -10,6 +10,7 @@ export interface FeedItem {
   url?: string;
   domain?: string;
 }
+
 export interface Item {
   id: number;
   title: string;
@@ -28,4 +29,18 @@ export interface Item {
   comments_count: number;
 }
 
-export interface IndividualArticleData extends Omit<Item, 'comments'> {}
+export interface IndividualArticleData
+  extends Pick<FeedItem, 'title' | 'url' | 'comments_count'> {
+  time: string;
+}
+
+export interface ArticleData
+  extends Pick<FeedItem, 'title' | 'points' | 'user' | 'time_ago' | 'id'> {}
+
+export interface CommentData
+  extends Pick<
+    Item,
+    'user' | 'content' | 'comments_count' | 'level' | 'time_ago' | 'id'
+  > {
+  comments: CommentData[];
+}

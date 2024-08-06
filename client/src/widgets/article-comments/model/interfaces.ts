@@ -1,6 +1,6 @@
-import { Item } from '@/shared/model/articleInterfaces/interfaces';
+import { CommentData } from '@/shared/model/articleInterfaces/interfaces';
 
 export interface ArticleCommentsProps {
-  data: Item[] | undefined;
+  data: CommentData[] | undefined;
   isError: boolean;
 }

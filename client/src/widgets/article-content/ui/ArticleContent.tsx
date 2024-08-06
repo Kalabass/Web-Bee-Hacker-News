@@ -40,10 +40,8 @@ export const ArticleContent: FC<ArticleContentProps> = ({ id }) => {
               {'View article ->'}
             </Link>
           </UserTypography>
-          <InfoTypography>
-            {new Date(data.time * 1000).toLocaleString()}
-          </InfoTypography>
-          <InfoTypography custom_color='primary'>
+          <InfoTypography>{data.time}</InfoTypography>
+          <InfoTypography CustomColor='primary'>
             {`${data.comments_count} ${data.comments_count === 1 ? 'comment:' : 'comments:'}`}
           </InfoTypography>
         </>

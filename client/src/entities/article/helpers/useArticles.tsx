@@ -1,5 +1,6 @@
 import { articleService } from '@/shared/api/articleService';
-import { REFETCH_INTERVAL_MS } from '@/shared/constants';
+import { REFETCH_INTERVAL_MS } from '@/shared/const/RefetchIntervalMS';
+
 import { useQuery } from '@tanstack/react-query';
 
 export const useArticles = () => {

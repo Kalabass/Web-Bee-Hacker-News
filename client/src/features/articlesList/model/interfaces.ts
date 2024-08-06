@@ -1,5 +1,5 @@
-import { FeedItem } from '@/shared/model/articleInterfaces/interfaces';
+import { ArticleData } from '@/shared/model/articleInterfaces/interfaces';
 
 export interface ArticlesListProps {
-  data: FeedItem[];
+  data: ArticleData[];
 }

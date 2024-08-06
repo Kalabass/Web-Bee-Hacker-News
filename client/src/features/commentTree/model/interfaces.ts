@@ -1,5 +1,5 @@
-import { Item } from '@/shared/model/articleInterfaces/interfaces';
+import { CommentData } from '@/shared/model/articleInterfaces/interfaces';
 
 export interface CommentTreeProps {
-  comments: Item[];
+  comments: CommentData[];
 }

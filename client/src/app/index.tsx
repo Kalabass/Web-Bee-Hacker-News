@@ -1,25 +1,31 @@
-import { Routing } from '@/pages';
+import { router } from '@/pages';
+import { ThemeProvider } from '@emotion/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { withMuiTheme } from './providers/withMuiTheme';
-import { withQueryClient } from './providers/withQueryClient';
-import { withRouter } from './providers/withRouter';
 import './styles/main.css';
+import MuiTheme from './styles/muiTheme';
 
-export const App = withMuiTheme(
-  withQueryClient(
-    withRouter(() => {
-      return (
-        <>
-          <Routing />
-          <ToastContainer
-            position='bottom-right'
-            autoClose={1000}
-            stacked={true}
-          />
-        </>
-      );
-    }),
-  ),
-);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+export const App = () => {
+  return (
+    <ThemeProvider theme={MuiTheme}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position='bottom-right'
+          autoClose={1000}
+          stacked={true}
+        />
+      </QueryClientProvider>
+    </ThemeProvider>
+  );
+};

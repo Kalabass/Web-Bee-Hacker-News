@@ -2,10 +2,9 @@ import { useCommentStore } from '@/shared/store/useCommentsStore';
 import { InfoTypography, UserTypography } from '@/shared/ui/Typography';
 import { Box, Button, Card, Stack, Typography, styled } from '@mui/material';
 import { FC } from 'react';
+import { CommentCardProps } from '../model/interfaces';
 
-import { CommentProps } from '../model/interfaces';
-
-export const CommentCard: FC<CommentProps> = ({
+export const CommentCard: FC<CommentCardProps> = ({
   user,
   content,
   comments_count,
