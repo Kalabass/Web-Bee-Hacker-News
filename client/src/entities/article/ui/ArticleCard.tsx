@@ -21,18 +21,24 @@ export const ArticleCard: FC<ArticleCardProps> = ({
       <StyledCard variant='outlined'>
         <StyledCardContent>
           <TitleTypography>{title}</TitleTypography>
-          <Stack direction='row' spacing={1} alignItems='center'>
+          <StyledStack>
             <UserTypography>by {user}</UserTypography>
             <InfoTypography>{time_ago}</InfoTypography>
             <InfoTypography>
               {points} {points === 1 ? 'point' : 'points'}
             </InfoTypography>
-          </Stack>
+          </StyledStack>
         </StyledCardContent>
       </StyledCard>
     </StyledLink>
   );
 };
+
+const StyledStack = styled(Stack)(({ theme }) => ({
+  flexDirection: 'row',
+  gap: theme.spacing(1),
+  alignItems: 'center',
+}));
 
 const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',

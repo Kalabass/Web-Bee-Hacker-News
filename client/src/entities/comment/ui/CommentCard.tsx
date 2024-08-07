@@ -1,6 +1,8 @@
 import { useCommentStore } from '@/shared/store/useCommentsStore';
 import { InfoTypography, UserTypography } from '@/shared/ui/Typography';
 import { Box, Button, Card, Stack, Typography, styled } from '@mui/material';
+
+import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { CommentCardProps } from '../model/interfaces';
 
@@ -28,7 +30,9 @@ export const CommentCard: FC<CommentCardProps> = ({
       </Stack>
 
       <Box>
-        <StyledTypography dangerouslySetInnerHTML={{ __html: content }} />
+        <StyledTypography
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
+        />
 
         {comments_count > 0 && (
           <StyledButton variant='outlined' onClick={handleToggleVisibility}>

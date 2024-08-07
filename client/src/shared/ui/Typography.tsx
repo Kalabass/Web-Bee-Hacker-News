@@ -26,7 +26,7 @@ export const UserTypography = styled(Typography, {
 }));
 
 export const InfoTypography = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'custom_color',
+  shouldForwardProp: (prop) => prop !== 'CustomColor',
 })<{ CustomColor?: string }>(({ theme, CustomColor: CustomColor }) => ({
   fontSize: '1.25rem',
   [theme.breakpoints.up('xl')]: {
@@ -35,6 +35,5 @@ export const InfoTypography = styled(Typography, {
   [theme.breakpoints.between('xs', 'sm')]: {
     fontSize: '0.8rem',
   },
-  color: CustomColor ? CustomColor : theme.palette.text.secondary,
-  variant: 'body2',
+  color: CustomColor || theme.palette.text.secondary,
 }));

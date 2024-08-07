@@ -17,13 +17,11 @@ export const ArticlePage: FC = () => {
 
   return (
     <>
-      <NavBar
-        children={
-          !isInvalidId && (
-            <RefetchButton entity='comments' query={commentsQuery} />
-          )
-        }
-      />
+      <NavBar>
+        {isInvalidId && (
+          <RefetchButton entity='comments' query={commentsQuery} />
+        )}
+      </NavBar>
       <PageContainer>
         {commentsQuery.isError || isInvalidId ? (
           <NotFoundBox text='article' />

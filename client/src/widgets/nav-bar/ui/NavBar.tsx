@@ -3,9 +3,8 @@ import { PageContainer } from '@/shared/ui/PageContainer';
 import { AppBar, Toolbar, Typography, styled } from '@mui/material';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { NavBarProps } from '../model/interfaces';
 
-export const NavBar: FC<NavBarProps> = ({ children }) => {
+export const NavBar: FC = () => {
   return (
     <StyledAppBar elevation={1}>
       <PageContainer>
@@ -13,7 +12,6 @@ export const NavBar: FC<NavBarProps> = ({ children }) => {
           <StyledTypography>
             <Link to={AppRoutes.HOME}>HackerNews</Link>
           </StyledTypography>
-          {children}
         </StyledToolbar>
       </PageContainer>
     </StyledAppBar>
@@ -24,11 +22,11 @@ const StyledAppBar = styled(AppBar)`
   position: sticky;
 `;
 
-const StyledToolbar = styled(Toolbar)`
-  gap: 8px;
-  display: flex;
-  justify-content: space-between;
-`;
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  gap: theme.spacing(1),
+  display: 'flex',
+  justifyContent: 'space-between',
+}));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up('xl')]: {

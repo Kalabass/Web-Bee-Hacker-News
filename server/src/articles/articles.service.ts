@@ -12,18 +12,18 @@ import {
 
 @Injectable()
 export class ArticlesService {
-  private readonly API_BASE_URL: string;
   private readonly PAGES = 12;
-
+  private readonly ARTICLES_NUMBER = 100;
+  private readonly UNIX_TIMESTAMP_MULTIPLIER = 1000;
+  private readonly API_BASE_URL = 'https://api.hnpwa.com/v0';
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
-  ) {
-    this.API_BASE_URL =
-      this.configService.get<string>('API_BASE_URL') ||
-      'https://api.hnpwa.com/v0';
+  ) {}
+  private handleError(e: any, message: string): never {
+    console.error(message, e);
+    throw new InternalServerErrorException(message);
   }
-
   async getLatest(): Promise<ArticleData[]> {
     try {
       const requests = Array.from({ length: this.PAGES }, (_, i) =>
@@ -39,7 +39,7 @@ export class ArticlesService {
       let allNews: FeedItem[] = responses.flatMap((response) => response.data);
 
       return allNews
-        .slice(0, 100)
+        .slice(0, this.ARTICLES_NUMBER)
         .map(({ id, title, points, user, time_ago }) => ({
           id,
           title,
@@ -48,68 +48,68 @@ export class ArticlesService {
           time_ago,
         }));
     } catch (e) {
-      console.error('error fetching articles', e);
-      throw new InternalServerErrorException('error fetching articles');
+      this.handleError(e, 'error fetching articles');
     }
   }
 
   private formatDate(unixTimestamp: number) {
-    return new Date(unixTimestamp * 1000).toLocaleString();
+    return new Date(
+      unixTimestamp * this.UNIX_TIMESTAMP_MULTIPLIER,
+    ).toLocaleString();
+  }
+
+  private async fetchItem(id: number): Promise<Item> {
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get<Item>(`${this.API_BASE_URL}/item/${id}.json`),
+      );
+      return response.data;
+    } catch (e) {
+      this.handleError(e, `Failed to fetch item with id ${id}`);
+    }
   }
 
   async getOne(id: number): Promise<IndividualArticleData> {
     try {
-      const response = await firstValueFrom(
-        this.httpService.get<Item>(`${this.API_BASE_URL}/item/${id}.json`),
-      );
+      const item = await this.fetchItem(id);
 
-      const { title, url, time, comments_count } = response.data;
+      const { title, url, time, comments_count } = item;
 
       return { title, url, time: this.formatDate(time), comments_count };
     } catch (e) {
-      console.error('error fetching single article', e);
-      throw new InternalServerErrorException('Failed to fetch single article');
+      this.handleError(e, 'Failed to fetch single article');
     }
+  }
+
+  private transformComment(comment: Item): CommentData {
+    const { id, user, content, comments_count, level, time_ago, comments } =
+      comment;
+    return {
+      id,
+      user,
+      content,
+      comments_count,
+      level,
+      time_ago,
+      comments: comments ? this.transformComments(comments) : [],
+    };
+  }
+
+  private transformComments(comments: Item[]): CommentData[] {
+    return comments.map(this.transformComment.bind(this));
   }
 
   async getArticleComments(id: number): Promise<CommentData[]> {
     try {
-      const response = await firstValueFrom(
-        this.httpService.get<Item>(`${this.API_BASE_URL}/item/${id}.json`),
-      );
-
-      const item = response.data;
+      const item = await this.fetchItem(id);
 
       if (!item.comments) {
         return [];
       }
 
-      const transformComments = (comments: Item[]): CommentData[] => {
-        return comments.map(
-          ({
-            id,
-            user,
-            content,
-            comments_count,
-            level,
-            time_ago,
-            comments,
-          }) => ({
-            id,
-            user,
-            content,
-            comments_count,
-            level,
-            time_ago,
-            comments: comments ? transformComments(comments) : [],
-          }),
-        );
-      };
-
-      return transformComments(item.comments);
+      return this.transformComments(item.comments);
     } catch (e) {
-      console.error('error fetching article comments', e);
-      throw new InternalServerErrorException('error fetching article comments');
+      this.handleError(e, 'error fetching article comments');
     }
   }
 }
