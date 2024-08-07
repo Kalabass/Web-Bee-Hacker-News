@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { CommentTreeProps } from '../model/interfaces';
 
 export const CommentTree: FC<CommentTreeProps> = ({ comments }) => {
+  if (!comments.length) return null;
   return (
     <List disablePadding>
       {comments.map((comment) => (

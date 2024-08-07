@@ -1,6 +1,5 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import {
   ArticleData,
@@ -16,10 +15,7 @@ export class ArticlesService {
   private readonly ARTICLES_NUMBER = 100;
   private readonly UNIX_TIMESTAMP_MULTIPLIER = 1000;
   private readonly API_BASE_URL = 'https://api.hnpwa.com/v0';
-  constructor(
-    private readonly httpService: HttpService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly httpService: HttpService) {}
   private handleError(e: any, message: string): never {
     console.error(message, e);
     throw new InternalServerErrorException(message);

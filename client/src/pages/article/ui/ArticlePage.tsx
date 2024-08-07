@@ -1,7 +1,6 @@
 import { useComments } from '@/entities/comment';
 import { NotFoundBox } from '@/shared/ui/NotFoundBox';
 import { PageContainer } from '@/shared/ui/PageContainer';
-import { RefetchButton } from '@/shared/ui/RefetchButton';
 import { ArticleComments } from '@/widgets/article-comments';
 import { ArticleContent } from '@/widgets/article-content';
 import { NavBar } from '@/widgets/nav-bar';
@@ -17,11 +16,7 @@ export const ArticlePage: FC = () => {
 
   return (
     <>
-      <NavBar>
-        {isInvalidId && (
-          <RefetchButton entity='comments' query={commentsQuery} />
-        )}
-      </NavBar>
+      <NavBar entity='comments' query={commentsQuery}></NavBar>
       <PageContainer>
         {commentsQuery.isError || isInvalidId ? (
           <NotFoundBox text='article' />

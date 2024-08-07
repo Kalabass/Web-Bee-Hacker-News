@@ -6,20 +6,16 @@ import { Box } from '@mui/material';
 import { FC } from 'react';
 
 import { ArticlesList } from '@/features/articlesList';
-import { RefetchButton } from '../../../shared/ui/RefetchButton';
 
 export const MainPage: FC = () => {
   const articlesQuery = useArticles();
-  const { data, isLoading, isError } = articlesQuery;
   return (
     <>
-      <NavBar
-        children={<RefetchButton query={useArticles()} entity='articles' />}
-      />
+      <NavBar entity='articles' query={articlesQuery} />
       <PageContainer>
-        {isError && <Box>Error</Box>}
-        {isLoading && <Loader />}
-        {data && <ArticlesList data={data} />}
+        {articlesQuery.isError && <Box>Error</Box>}
+        {articlesQuery.isLoading && <Loader />}
+        {articlesQuery.data && <ArticlesList data={articlesQuery.data} />}
       </PageContainer>
     </>
   );

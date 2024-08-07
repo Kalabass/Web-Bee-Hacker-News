@@ -8,6 +8,5 @@ export const useArticles = () => {
     queryFn: () => articleService.getAll(),
     queryKey: ['articles'],
     refetchInterval: REFETCH_INTERVAL_MS,
-    select: ({ data }) => data,
   });
 };

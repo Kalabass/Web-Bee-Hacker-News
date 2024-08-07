@@ -8,6 +8,5 @@ export const useComments = (id: number) => {
     queryKey: ['comments', id],
     queryFn: () => articleService.getComments(id),
     refetchInterval: REFETCH_INTERVAL_MS,
-    select: ({ data }) => data,
   });
 };
